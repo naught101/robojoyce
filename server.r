@@ -92,13 +92,22 @@ get_started <- function() {
 }
 
 
+smoothPan <- function(map, lat, lng, zoom=12) {
+    #setView(lat = location$lat, lng = location$lon, zoom = 12)
+    JS(paste0(
+        map, ".panTo(map, {lat: ", lat, ", lng: ", lng, "},",
+        "zoom = ", zoom, ")"
+    ))
+}
+
+
 # pass selected preferences to the algorithm. it returns a selected town,
 # and we move the move to it and update the pane with some info.
 go_find_us <- function(inputs) {
     removeUI(selector = ".panel-controls")
     location <- get_best_town(inputs)
     leafletProxy('map') %>%
-        setView(lat = location$lat, lng = location$lon, zoom = 12)
+        smoothPan(lat = location$lat, lng = location$lon, zoom = 12)
     insertUI(
         selector = "#author",
         where = "beforeBegin",
@@ -124,7 +133,7 @@ map <- renderLeaflet({
             urlTemplate = "http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png",
             attribution = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             ) %>%
-        setView(lng = 149.1300, lat = -35.2809, zoom = 13) %>%
+        setView(lng = 149.1300, lat = -35.2809, zoom = 11) %>%
         addCircleMarkers(lng = town_data$X, lat = town_data$Y,
             radius = as.integer(town_data$SSR_NAME11) + 2,
             color = "#000", weight = 0.5, opacity = 0.7, fillOpacity = 0.7,
