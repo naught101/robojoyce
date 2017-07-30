@@ -70,17 +70,6 @@ get_started <- function() {
         selector = "#author",
         where = "beforeBegin",
         ui = absolutePanel(
-               tags$style(type = "text/css", "
-                 .irs-bar {width: 100%; height: 25px; background: black; border-top: 1px solid black; border-bottom: 1px solid black;}
-                 .irs-bar-edge {background: black; border: 1px solid black; height: 25px; border-radius: 0px; width: 20px;}
-                 .irs-line {border: 1px solid black; height: 25px; border-radius: 0px;}
-                 .irs-grid-text {font-family: color: white; bottom: 17px; z-index: 1;}
-                 .irs-grid-pol {display: none;}
-                 .irs-max {font-family: 'arial'; color: black;}
-                 .irs-min {font-family: 'arial'; color: black;}
-                 .irs-single {color:black; background:#F2C94C;}
-                 .irs-slider {width: 30px; height: 30px; top: 22px;}
-               "),
             id = "panel-options", class = "panel-absolute panel-controls",
             h4("What's in a move?"),
             p(class="text-muted", "Use the controls to tell us what matters to you."),
